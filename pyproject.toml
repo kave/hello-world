@@ -1,13 +1,16 @@
 [tool.poetry]
-name = "boilerplate-repo"
+name = "hello-world"
 version = "0.1.0"
-description = "Boilerplate for my repos"
+description = "Simple hello world microservice"
 authors = ["Apau, Emmanuel <e@mechanicode.io>"]
 license = "Apache License 2.0"
 
 [tool.poetry.dependencies]
 python = "^3.8"
 python-dotenv = "^0.13.0"
+uvicorn = "^0.15.0"
+Jinja2 = "^3.0.1"
+Flask = "^2.0.1"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.8.3"

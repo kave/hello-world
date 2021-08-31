@@ -1,6 +1,6 @@
-FROM python:3.8.6-buster
+FROM python:3.9
 
-WORKDIR /usr/src/app
+WORKDIR /app
 COPY . ./
 
 # System Prerequistes
@@ -20,4 +20,4 @@ RUN pip install poetry
 RUN poetry config virtualenvs.create false \
   && poetry install --no-interaction --no-ansi
 
-CMD ["python", "main.py"]
+CMD ["python", "-u", "main.py"]

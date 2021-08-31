@@ -1,7 +1,0 @@
-build:
-  docker:
-    dockerfile: Dockerfile
-    web: Dockerfile
-
-run:
-  web: python main.py
