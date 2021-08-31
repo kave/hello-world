@@ -25,7 +25,7 @@ image-latest:
 push-latest:
 	$(call docker_push)
 
-build: image-latest
+image: image-latest
 
 run: run-local
 
