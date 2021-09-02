@@ -1,24 +1,40 @@
 import os
 import socket
-import jinja2
+
 from flask import Flask, request
-from flask import render_template
-from pprint import pprint
+from flask import render_template, make_response
+
 import config
 
 app = Flask(__name__)
 
 
+@app.route('/favicon.ico')
+def favicon():
+    return make_response({}, 200)
+
+
+@app.route('/healthz')
+def healthz():
+    print('Healthy!')
+    return make_response({}, 200)
+
+
 @app.route("/")
 def hello_world():
     hostname = socket.gethostname()
-    pprint(dict(os.environ))
     return render_template('index.j2.html',
                            hostname=hostname,
                            headers=request.headers,
                            app_ip=os.environ.get('HELLO_WORLD_PORT', None),
                            svc_ip=os.environ.get('KUBERNETES_PORT', None),
                            )
+
+
+@app.route("/<string:path>")
+def catch_all(path):
+    print('Failed health check you want to ping /healthz')
+    return 'You want path: %s' % path
 
 
 if __name__ == '__main__':
