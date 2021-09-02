@@ -9,6 +9,18 @@ A simple hello-world microservice
 docker-compose build
 docker-compose up
 ```
+# Image Building
+Pre-req if using an M1 mac
+```
+docker buildx create --name m1_builder
+docker buildx use m1_builder
+```
+
+Then run make commands:
+```
+make image
+make push
+```
 
 # Kubernetes
 
