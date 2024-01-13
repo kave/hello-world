@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:latest
 
 WORKDIR /app
 COPY . ./
@@ -8,11 +8,11 @@ RUN apt-get update
 
 # System Depedencies
 RUN apt-get install -y --no-install-recommends \
-        gettext \
-        vim \
-        && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  gettext \
+  vim \
+  && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Dependency Environment
 RUN pip install poetry
