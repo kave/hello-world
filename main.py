@@ -34,7 +34,7 @@ def hello_world():
 @app.route("/<string:path>")
 def catch_all(path):
     print('Failed health check you want to ping /healthz')
-    return make_response({'msg': f'You want path: {path}'}, 500)
+    return make_response({'msg': f'unknown path'}, 500)
 
 
 if __name__ == '__main__':
