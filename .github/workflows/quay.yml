@@ -8,13 +8,13 @@ jobs:
   login:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Login to Quay.io
+      - name: Login to Quay.io
         uses: docker/login-action@v3
         with:
           registry: quay.io
           username: ${{ secrets.QUAY_USERNAME }}
           password: ${{ secrets.QUAY_ROBOT_TOKEN }}
+      - run: ls -l
       - run: docker-compose build
       - run: docker tag hello-world-app quay.io/mechanicode/azure-interview:broken
       # - run: docker-compose push
