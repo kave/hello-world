@@ -16,6 +16,5 @@ jobs:
           username: ${{ secrets.QUAY_USERNAME }}
           password: ${{ secrets.QUAY_ROBOT_TOKEN }}
       - run: docker-compose build
-      - run: docker image ls
-      - run: docker tag hello-world-app quay.io/mechanicode/azure-interview:broken
+      - run: docker tag docker.io/library/hello-world_app quay.io/mechanicode/azure-interview:broken
       # - run: docker-compose push
