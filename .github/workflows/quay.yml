@@ -17,4 +17,4 @@ jobs:
           password: ${{ secrets.QUAY_ROBOT_TOKEN }}
       - run: docker-compose build
       - run: docker tag docker.io/library/hello-world_app quay.io/mechanicode/azure-interview:broken
-      - run: docker-compose push
+      - run: docker push quay.io/mechanicode/azure-interview:broken
