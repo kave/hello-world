@@ -33,7 +33,7 @@ def hello_world():
 
 @app.route("/<string:path>")
 def catch_all(path):
-    print('Failed health check you want to ping /healthz')
+    print('Failed health check! Update the image to ping path /healthz')
     return make_response({'msg': f'unknown path'}, 500)
 
 
