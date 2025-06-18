@@ -14,6 +14,10 @@ RUN apt-get install -y --no-install-recommends \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Create non-root user and set permissions
+RUN useradd -m appuser && chown -R appuser /app
+USER appuser
+
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
