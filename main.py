@@ -17,17 +17,19 @@ def favicon():
 @app.route('/healthz')
 def healthz():
     print('Healthy!')
-    return make_response({}, 200)
+    return make_response({"status": "healthy"}, 200)
 
 
 @app.route("/")
 def hello_world():
     hostname = socket.gethostname()
+    logo_path = os.environ.get('LOGO_PATH', '../static/img/logo.png')
     return render_template('index.j2.html',
                            hostname=hostname,
                            headers=request.headers,
                            app_ip=os.environ.get('HELLO_WORLD_PORT', None),
                            svc_ip=os.environ.get('KUBERNETES_PORT', None),
+                           logo_path=logo_path
                            )
 
 

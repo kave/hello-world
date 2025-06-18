@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        LOGO_PATH: ../static/img/md_state.png
+    ports:
+      - "9000:9000"

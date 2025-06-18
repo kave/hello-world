@@ -1,22 +1,28 @@
 # Hello World
+
 A simple hello-world microservice
 
 # Local Development
-- [Poetry](https://python-poetry.org/)
+
 - Python3
 - Docker
+
 ```
 docker-compose build
 docker-compose up
 ```
+
 # Image Building
+
 Pre-req if using an M1 mac
+
 ```
 docker buildx create --name m1_builder
 docker buildx use m1_builder
 ```
 
 Then run make commands:
+
 ```
 make image
 make push
@@ -74,3 +80,23 @@ spec:
       nodePort: 30091
 
 ```
+
+# Hello World Microservice
+
+## Dependency Management Update
+
+This project no longer uses Poetry. Dependencies are now managed with `pip` and a `requirements.txt` file.
+
+### Installing dependencies
+
+```sh
+pip install -r requirements.txt
+```
+
+### Running the app
+
+```sh
+python main.py
+```
+
+\

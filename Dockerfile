@@ -1,4 +1,4 @@
-FROM python:latest
+FROM python:3.12-slim
 
 WORKDIR /app
 COPY . ./
@@ -14,10 +14,11 @@ RUN apt-get install -y --no-install-recommends \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Dependency Environment
-RUN pip install poetry
-# Project initialization:
-RUN poetry config virtualenvs.create false \
-  && poetry install --no-interaction --no-ansi
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Set logo path as build argument and environment variable
+ARG LOGO_PATH=../static/img/logo.png
+ENV LOGO_PATH=${LOGO_PATH}
 
 CMD ["python", "-u", "main.py"]
