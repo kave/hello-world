@@ -18,7 +18,7 @@ jobs:
 
       - name: Build and tag latest (default compose)
         run: |
-          docker-compose build
+          docker compose build
           docker tag hello-world_app etapau/hello-world:latest
 
       - name: Push latest tag
@@ -26,8 +26,8 @@ jobs:
 
       - name: Build and tag md (md compose)
         run: |
-          docker-compose -f docker-compose-md.yml build
+          docker compose -f docker-compose-md.yml build
           docker tag hello-world_app etapau/hello-world:md
-          
+
       - name: Push md tag
         run: docker push etapau/hello-world:md
