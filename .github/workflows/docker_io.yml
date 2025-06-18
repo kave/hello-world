@@ -16,18 +16,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and tag latest (default compose)
+      - name: Build and Push latest (default compose)
         run: |
           docker compose build
-          docker tag hello-world_app etapau/hello-world:latest
-
-      - name: Push latest tag
-        run: docker push etapau/hello-world:latest
-
-      - name: Build and tag md (md compose)
+          docker compose push
+      - name: Build and Push md (md compose)
         run: |
           docker compose -f docker-compose-md.yml build
-          docker tag hello-world_app etapau/hello-world:md
-
-      - name: Push md tag
-        run: docker push etapau/hello-world:md
+          docker compose -f docker-compose-md.yml push
