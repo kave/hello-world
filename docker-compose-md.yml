@@ -7,3 +7,5 @@ services:
         LOGO_PATH: ../static/img/md_state.png
     ports:
       - "9000:9000"
+    environment:
+      - USE_CLEAN=true
