@@ -1,8 +1,8 @@
-version: "3"
-
 services:
   app:
     image: etapau/hello-world:latest
     build: .
     ports:
       - "9000:9000"
+    environment:
+      - USE_CLEAN=false
