@@ -1,28 +1,23 @@
-FROM python:3.12-slim
+#syntax=docker/dockerfile:1
+
+FROM dhi.io/python:3.13-alpine3.22
 
 WORKDIR /app
-COPY . ./
 
-# System Prerequistes
-RUN apt-get update
-
-# System Depedencies
-RUN apt-get install -y --no-install-recommends \
-  gettext \
-  vim \
-  && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# Create non-root user and set permissions
-RUN useradd -m appuser && chown -R appuser /app
-USER appuser
+# Copy requirements first for better caching
+COPY requirements.txt /app/
 
 # Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN ["pip", "install", "--no-cache-dir", "-r", "/app/requirements.txt"]
+
+# Copy application code
+COPY . .
 
 # Set logo path as build argument and environment variable
 ARG LOGO_PATH=../static/img/logo.png
 ENV LOGO_PATH=${LOGO_PATH}
+
+# Use non-root user by default in DHI
+USER nonroot
 
 CMD ["python", "-u", "main.py"]
