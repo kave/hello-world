@@ -3,6 +3,9 @@ name: Unit Tests
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -18,4 +21,4 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run tests
-        run: pytest tests/ -v
+        run: pytest tests/ -v --cov=main --cov=config --cov-report=term-missing --cov-fail-under=80
